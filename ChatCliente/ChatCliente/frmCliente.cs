@@ -47,7 +47,7 @@ namespace ChatCliente
             }
             else // Se esta conectado entao desconecta
             {
-                fecharConexao("Desconectado a pedido do usuário.");
+                encerrarCon("Desconectado a pedido do usuário.");
                 this.groupBoxBatePapo.Enabled = false;
             }
         }
@@ -107,7 +107,7 @@ namespace ChatCliente
                 // Extrai o motivo da mensagem resposta. O motivo começa no 3o caractere
                 Motivo += ConResposta.Substring(2, ConResposta.Length - 2);
                 // Atualiza o formulário como o motivo da falha na conexão
-                this.Invoke(new FechaConexaoCallBack(this.fecharConexao), new object[] { Motivo });
+                this.Invoke(new FechaConexaoCallBack(this.encerrarCon), new object[] { Motivo });
                 // Sai do método
                return;
             }
@@ -178,7 +178,7 @@ namespace ChatCliente
         }
 
         // Fecha a conexão com o servidor
-        private void fecharConexao(string Motivo)
+        private void encerrarCon(string Motivo)
         {
             // Mostra o motivo porque a conexão encerrou
             rTxtLog.SelectionColor = System.Drawing.Color.Red;
@@ -226,7 +226,7 @@ namespace ChatCliente
             if (statusConexao == true)
             {
                 // Se esta conectado entao desconecta
-                fecharConexao("Desconectado a pedido do usuário.");
+                encerrarCon("Desconectado a pedido do usuário.");
             }
         }
 

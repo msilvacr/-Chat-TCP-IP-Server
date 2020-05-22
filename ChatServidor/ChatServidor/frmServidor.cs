@@ -14,15 +14,13 @@ namespace ChatServidor
             InitializeComponent();
         }
 
-        public void mainServidor_StatusChanged(object sender, StatusChangedEventArgs e)
+        public void mudancaStatus(object sender, StatusChangedEventArgs e)
         {
-            // Chama o método que atualiza o formulário
             this.Invoke(new AtualizaStatusCallback(this.AtualizaStatus), new object[] { e.EventMessage });
         }
 
         private void AtualizaStatus(string strMensagem)
         {
-            // Atualiza o logo com mensagens
             if (strMensagem.Contains("[ADM]"))
             {
                 rTxtLog.SelectionColor = Color.Red;
@@ -38,10 +36,10 @@ namespace ChatServidor
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
-            Conectar();
+            conectarServidor();
         }
 
-        private void Conectar()
+        private void conectarServidor()
         {
 
             if (txtIP.Text == string.Empty)
@@ -52,19 +50,10 @@ namespace ChatServidor
             }
             try
             {
-                // Analisa o endereço IP do servidor informado no textbox
                 IPAddress enderecoIP = IPAddress.Parse(txtIP.Text);
-
-                // Cria uma nova instância do objeto ChatServidor
                 ChatServidor mainServidor = new ChatServidor(enderecoIP);
-
-                // Vincula o tratamento de evento StatusChanged a mainServer_StatusChanged
-                ChatServidor.StatusChanged += new StatusChangedEventHandler(mainServidor_StatusChanged);
-
-                // Inicia o atendimento das conexões
+                ChatServidor.StatusChanged += new StatusChangedEventHandler(mudancaStatus);
                 mainServidor.IniciaAtendimento();
-
-                // Mostra que nos iniciamos o atendimento para conexões
                 rTxtLog.SelectionColor = Color.Blue;
                 rTxtLog.AppendText("Monitorando as conexões...\r\n");
                 rTxtLog.SelectionColor = Color.Black;
@@ -77,10 +66,9 @@ namespace ChatServidor
         }
         private void txtIP_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Se pressionou a tecla Enter
             if (e.KeyChar == (char)13)
             {
-                Conectar();
+                conectarServidor();
             }
         }
     }
