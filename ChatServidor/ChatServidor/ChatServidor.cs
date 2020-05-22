@@ -66,7 +66,7 @@ namespace ChatServidor
             ChatServidor.htConexoes.Add(tcpUsuario, strUsername);
 
             // Informa a nova conexão para todos os usuário e para o formulário do servidor
-            EnviaMensagemAdmin(htConexoes[tcpUsuario] + " entrou..");
+            EnviaMensagemAdmin("[" + htConexoes[tcpUsuario] + "] entrou..");
         }
 
         // Remove o usuário das tabelas (hash tables)
@@ -76,7 +76,7 @@ namespace ChatServidor
             if (htConexoes[tcpUsuario] != null)
             {
                 // Primeiro mostra a informação e informa os outros usuários sobre a conexão
-                EnviaMensagemAdmin(htConexoes[tcpUsuario] + " saiu...");
+                EnviaMensagemAdmin("[" + htConexoes[tcpUsuario] + "] saiu...");
 
                 // Removeo usuário da hash table
                 ChatServidor.htUsuarios.Remove(ChatServidor.htConexoes[tcpUsuario]);
@@ -101,7 +101,7 @@ namespace ChatServidor
             StreamWriter swSenderSender;
 
             // Exibe primeiro na aplicação
-            e = new StatusChangedEventArgs("Administrador: " + Mensagem);
+            e = new StatusChangedEventArgs("[ADM]: " + Mensagem);
             OnStatusChanged(e);
 
             // Cria um array de clientes TCPs do tamanho do numero de clientes existentes
@@ -121,7 +121,7 @@ namespace ChatServidor
                     }
                     // Envia a mensagem para o usuário atual no laço
                     swSenderSender = new StreamWriter(tcpClientes[i].GetStream());
-                    swSenderSender.WriteLine("Administrador: " + Mensagem);
+                    swSenderSender.WriteLine("[ADM]: " + Mensagem);
                     swSenderSender.Flush();
                     swSenderSender = null;
                 }
@@ -138,7 +138,8 @@ namespace ChatServidor
             StreamWriter swSenderSender;
 
             // Primeiro exibe a mensagem na aplicação
-            e = new StatusChangedEventArgs(Origem + " disse : " + Mensagem);
+            e = new StatusChangedEventArgs("[" + Origem + "]: " + Mensagem);
+            //e = new StatusChangedEventArgs("[" + Origem + "]: " + Mensagem);
             OnStatusChanged(e);
 
             // Cria um array de clientes TCPs do tamanho do numero de clientes existentes
@@ -158,7 +159,8 @@ namespace ChatServidor
                     }
                     // Envia a mensagem para o usuário atual no laço
                     swSenderSender = new StreamWriter(tcpClientes[i].GetStream());
-                    swSenderSender.WriteLine(Origem + " disse: " + Mensagem);
+                    swSenderSender.WriteLine("[" + Origem + "]: " + Mensagem);
+                    //swSenderSender.WriteLine("[" + Origem + "] disse: " + Mensagem);
                     swSenderSender.Flush();
                     swSenderSender = null;
                 }
@@ -173,7 +175,6 @@ namespace ChatServidor
         {
             try
             {
-
                 // Pega o IP do primeiro dispostivo da rede
                 IPAddress ipaLocal = enderecoIP;
 
@@ -229,7 +230,6 @@ namespace ChatServidor
             // A thread chama o método AceitaCliente()
             thrSender.Start();
         }
-
         private void FechaConexao()
         {
             // Fecha os objetos abertos
@@ -237,7 +237,6 @@ namespace ChatServidor
             srReceptor.Close();
             swEnviador.Close();
         }
-
         // Ocorre quando um novo cliente é aceito
         private void AceitaCliente()
         {
@@ -259,7 +258,7 @@ namespace ChatServidor
                     FechaConexao();
                     return;
                 }
-                else if (usuarioAtual == "Administrator")
+                else if (usuarioAtual == "ADM")
                 {
                     // 0 => não conectado
                     swEnviador.WriteLine("0|Este nome de usuário é reservado.");

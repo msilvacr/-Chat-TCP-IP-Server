@@ -1,20 +1,17 @@
 ﻿using System.Windows.Forms;
 using System.Net;
 using System;
+using System.Drawing;
 
 namespace ChatServidor
 {
-    public partial class Form1 : Form
+    public partial class FormServidor : System.Windows.Forms.Form
     {
         private delegate void AtualizaStatusCallback(string strMensagem);
 
-        public Form1()
+        public FormServidor()
         {
             InitializeComponent();
-        }
-
-        private void btnAtender_Click(object sender, System.EventArgs e)
-        {
         }
 
         public void mainServidor_StatusChanged(object sender, StatusChangedEventArgs e)
@@ -26,20 +23,24 @@ namespace ChatServidor
         private void AtualizaStatus(string strMensagem)
         {
             // Atualiza o logo com mensagens
-            txtLog.AppendText(strMensagem + "\r\n");
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            if (strMensagem.Contains("[ADM]"))
+            {
+                rTxtLog.SelectionColor = Color.Red;
+                rTxtLog.AppendText(strMensagem + "\r\n");
+                rTxtLog.SelectionColor = Color.Black;
+            }
+            else
+            {
+                rTxtLog.AppendText(strMensagem + "\r\n");
+            }
         }
 
         private void btnConectar_Click(object sender, EventArgs e)
+        {
+            Conectar();
+        }
+
+        private void Conectar()
         {
 
             if (txtIP.Text == string.Empty)
@@ -48,10 +49,8 @@ namespace ChatServidor
                 txtIP.Focus();
                 return;
             }
-
             try
             {
-
                 // Analisa o endereço IP do servidor informado no textbox
                 IPAddress enderecoIP = IPAddress.Parse(txtIP.Text);
 
@@ -65,11 +64,21 @@ namespace ChatServidor
                 mainServidor.IniciaAtendimento();
 
                 // Mostra que nos iniciamos o atendimento para conexões
-                txtLog.AppendText("Monitorando as conexões...\r\n");
+                rTxtLog.SelectionColor = Color.Blue;
+                rTxtLog.AppendText("Monitorando as conexões...\r\n");
+                rTxtLog.SelectionColor = Color.Black;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro de conexão : " + ex.Message);
+            }
+        }
+        private void txtIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Se pressionou a tecla Enter
+            if (e.KeyChar == (char)13)
+            {
+                Conectar();
             }
         }
     }

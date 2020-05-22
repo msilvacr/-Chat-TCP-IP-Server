@@ -34,3 +34,12 @@ C:\Users\marlon.cruz\Source\Repos\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\D
 C:\Users\marlon.cruz\Source\Repos\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.csproj.CoreCompileInputs.cache
 C:\Users\marlon.cruz\Source\Repos\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.exe
 C:\Users\marlon.cruz\Source\Repos\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.pdb
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\bin\Debug\ChatServidor.exe
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.Properties.Resources.resources
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.csproj.GenerateResource.cache
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.csproj.CoreCompileInputs.cache
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.exe
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.pdb
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\bin\Debug\ChatServidor.pdb
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.csprojAssemblyReference.cache
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatServidor\ChatServidor\obj\x86\Debug\ChatServidor.FormServidor.resources

@@ -31,15 +31,24 @@ namespace ChatCliente
 
         private void btnConectar_Click(object sender, System.EventArgs e)
         {
+            Conectar();
+        }
+
+
+        private void Conectar()
+        {
             // se não esta conectando aguarda a conexão
             if (statusConexao == false)
             {
                 // Inicializa a conexão
                 inicializarConexao();
+                this.groupBoxBatePapo.Enabled = true;
+                this.txtMensagem.Focus();
             }
             else // Se esta conectado entao desconecta
             {
                 fecharConexao("Desconectado a pedido do usuário.");
+                this.groupBoxBatePapo.Enabled = false;
             }
         }
         private void inicializarConexao()
@@ -106,15 +115,39 @@ namespace ChatCliente
             // Enquanto estiver conectado le as linhas que estão chegando do servidor
             while (statusConexao)
             {
-                // exibe mensagems no Textbox
-                this.Invoke(new AtualizaLogCallBack(this.atualizarChat), new object[] { strReceptor.ReadLine() });
+                try
+                {
+                    // exibe mensagems no Textbox
+                    this.Invoke(new AtualizaLogCallBack(this.atualizarChat), new object[] { strReceptor.ReadLine() });
+                }
+                catch
+                {
+
+                }
             }
         }
 
         private void atualizarChat(string strMensagem)
         {
             // Anexa texto ao final de cada linha
-            txtLog.AppendText(strMensagem + "\r\n");
+            if (strMensagem.Contains("[ADM]"))
+            {
+                rTxtLog.SelectionColor = System.Drawing.Color.Red;
+                rTxtLog.AppendText(strMensagem + "\r\n");
+                rTxtLog.SelectionColor = System.Drawing.Color.Black;
+            }
+            else if (strMensagem.Contains("Conectado com sucesso!"))
+            {
+                rTxtLog.SelectionColor = System.Drawing.Color.Green;
+                rTxtLog.AppendText(strMensagem + "\r\n");
+                rTxtLog.SelectionColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                rTxtLog.AppendText(strMensagem + "\r\n");
+            }
+
+            
         }
 
         private void btnEnviar_Click(object sender, System.EventArgs e)
@@ -148,7 +181,9 @@ namespace ChatCliente
         private void fecharConexao(string Motivo)
         {
             // Mostra o motivo porque a conexão encerrou
-            txtLog.AppendText(Motivo + "\r\n");
+            rTxtLog.SelectionColor = System.Drawing.Color.Red;
+            rTxtLog.AppendText(Motivo + "\r\n");
+            rTxtLog.SelectionColor = System.Drawing.Color.Black;
 
             // Habilita e desabilita controles do formulario
             txtServidorIP.Enabled = true;
@@ -156,7 +191,8 @@ namespace ChatCliente
             txtMensagem.Enabled = false;
             btnEnviar.Enabled = false;
             btnConectar.Text = "Conectar";
-            
+            this.groupBoxBatePapo.Enabled = false;
+
 
             // Fecha os objetos
             statusConexao = false;
@@ -196,6 +232,29 @@ namespace ChatCliente
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmCliente_Load(object sender, EventArgs e)
+        {
+            this.groupBoxBatePapo.Enabled = false;  
+        }
+
+        private void txtServidorIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Se pressionou a tecla Enter
+            if (e.KeyChar == (char)13)
+            {
+                this.txtUsuario.Focus();
+            }
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Se pressionou a tecla Enter
+            if (e.KeyChar == (char)13)
+            {
+                Conectar();
+            }
         }
     }
 }
