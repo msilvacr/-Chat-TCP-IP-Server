@@ -10,7 +10,7 @@ namespace ChatCliente
     public partial class frmCliente : Form
     {
         // Trata o nome do usuário
-        private string NomeUsuario = "Desconhecido";
+        private string usuario = "Desconhecido";
         private StreamWriter stwEnviador;
         private StreamReader strReceptor;
         private TcpClient tcpServidor;
@@ -20,7 +20,7 @@ namespace ChatCliente
         private delegate void FechaConexaoCallBack(string strMotivo);
         private Thread mensagemThread;
         private IPAddress enderecoIP;
-        private bool Conectado;
+        private bool statusConexao;
 
         public frmCliente()
         {
@@ -32,7 +32,7 @@ namespace ChatCliente
         private void btnConectar_Click(object sender, System.EventArgs e)
         {
             // se não esta conectando aguarda a conexão
-            if (Conectado == false)
+            if (statusConexao == false)
             {
                 // Inicializa a conexão
                 InicializaConexao();
@@ -53,17 +53,17 @@ namespace ChatCliente
                 tcpServidor.Connect(enderecoIP, 2502);
 
                 // AJuda a verificar se estamos conectados ou não
-                Conectado = true;
+                statusConexao = true;
 
                 // Prepara o formulário
-                NomeUsuario = txtUsuario.Text;
+                usuario = txtUsuario.Text;
 
                 // Desabilita e habilita os campos apropriados
                 txtServidorIP.Enabled = false;
                 txtUsuario.Enabled = false;
                 txtMensagem.Enabled = true;
                 btnEnviar.Enabled = true;
-                btnConectar.Text = "Desconectado";
+                btnConectar.Text = "Desconectar";
 
                 // Envia o nome do usuário ao servidor
                 stwEnviador = new StreamWriter(tcpServidor.GetStream());
@@ -76,7 +76,7 @@ namespace ChatCliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro : " + ex.Message, "Erro na conexão com servidor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Erro : " + ex.Message, "Erro ao conectar com o servidor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -103,7 +103,7 @@ namespace ChatCliente
             }
 
             // Enquanto estiver conectado le as linhas que estão chegando do servidor
-            while (Conectado)
+            while (statusConexao)
             {
                 // exibe mensagems no Textbox
                 this.Invoke(new AtualizaLogCallBack(this.AtualizaLog), new object[] { strReceptor.ReadLine() });
@@ -140,6 +140,7 @@ namespace ChatCliente
                 txtMensagem.Lines = null;
             }
             txtMensagem.Text = "";
+            txtMensagem.Focus();
         }
 
         // Fecha a conexão com o servidor
@@ -147,15 +148,16 @@ namespace ChatCliente
         {
             // Mostra o motivo porque a conexão encerrou
             txtLog.AppendText(Motivo + "\r\n");
-            // Habilita e desabilita os controles apropriados no formulario
+
+            // Habilita e desabilita controles do formulario
             txtServidorIP.Enabled = true;
             txtUsuario.Enabled = true;
             txtMensagem.Enabled = false;
             btnEnviar.Enabled = false;
-            btnConectar.Text = "Conectado";
+            btnConectar.Text = "Conectar";
 
             // Fecha os objetos
-            Conectado = false;
+            statusConexao = false;
             stwEnviador.Close();
             strReceptor.Close();
             tcpServidor.Close();
@@ -164,14 +166,19 @@ namespace ChatCliente
         // O tratador de evento para a saida da aplicação
         public void OnApplicationExit(object sender, EventArgs e)
         {
-            if (Conectado == true)
+            if (statusConexao == true)
             {
                 // Fecha as conexões, streams, etc...
-                Conectado = false;
+                statusConexao = false;
                 stwEnviador.Close();
                 strReceptor.Close();
                 tcpServidor.Close();
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            EnviaMensagem();
         }
     }
 }

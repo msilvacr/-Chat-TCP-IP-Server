@@ -16,3 +16,12 @@ C:\Users\bdiogo\TCP_IP_COMMUNICATOR\FUNCIONANDO\ChatCliente\ChatCliente\obj\x86\
 C:\Users\bdiogo\TCP_IP_COMMUNICATOR\FUNCIONANDO\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.csproj.CoreCompileInputs.cache
 C:\Users\bdiogo\TCP_IP_COMMUNICATOR\FUNCIONANDO\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.exe
 C:\Users\bdiogo\TCP_IP_COMMUNICATOR\FUNCIONANDO\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.pdb
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\bin\Debug\ChatCliente.exe
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\bin\Debug\ChatCliente.pdb
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.csprojAssemblyReference.cache
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.frmCliente.resources
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.Properties.Resources.resources
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.csproj.GenerateResource.cache
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.csproj.CoreCompileInputs.cache
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.exe
+C:\Users\marlon.cruz\Documents\APS - 5º SEMESTRE\ChatTCP-IP\ChatCliente\ChatCliente\obj\x86\Debug\ChatCliente.pdb
