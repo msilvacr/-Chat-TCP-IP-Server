@@ -147,7 +147,7 @@ namespace ChatCliente
                 rTxtLog.AppendText(strMensagem + "\r\n");
             }
 
-            
+            rTxtLog.ScrollToCaret();
         }
 
         private void btnEnviar_Click(object sender, System.EventArgs e)
@@ -184,6 +184,7 @@ namespace ChatCliente
             rTxtLog.SelectionColor = System.Drawing.Color.Red;
             rTxtLog.AppendText(Motivo + "\r\n");
             rTxtLog.SelectionColor = System.Drawing.Color.Black;
+            rTxtLog.ScrollToCaret();
 
             // Habilita e desabilita controles do formulario
             txtServidorIP.Enabled = true;
