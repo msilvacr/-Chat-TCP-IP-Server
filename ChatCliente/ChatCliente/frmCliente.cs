@@ -104,6 +104,11 @@ namespace ChatCliente
 
         private void atualizarChat(string strMensagem)
         {
+            if(strMensagem.Contains("!clear"))
+            {
+                this.rTxtLog.Text = string.Empty;
+            }
+            else 
             if (strMensagem.Contains("[ADM]"))
             {
                 rTxtLog.SelectionColor = System.Drawing.Color.Red;

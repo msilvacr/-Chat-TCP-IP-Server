@@ -37,8 +37,8 @@
             this.txtMensagem = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBoxBatePapo = new System.Windows.Forms.GroupBox();
-            this.btnEnviar = new System.Windows.Forms.PictureBox();
             this.rTxtLog = new System.Windows.Forms.RichTextBox();
+            this.btnEnviar = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxBatePapo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEnviar)).BeginInit();
@@ -129,6 +129,15 @@
             this.groupBoxBatePapo.TabStop = false;
             this.groupBoxBatePapo.Text = "Bate Papo";
             // 
+            // rTxtLog
+            // 
+            this.rTxtLog.Location = new System.Drawing.Point(13, 19);
+            this.rTxtLog.Name = "rTxtLog";
+            this.rTxtLog.ReadOnly = true;
+            this.rTxtLog.Size = new System.Drawing.Size(353, 252);
+            this.rTxtLog.TabIndex = 10;
+            this.rTxtLog.Text = "";
+            // 
             // btnEnviar
             // 
             this.btnEnviar.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -143,21 +152,12 @@
             this.btnEnviar.TabStop = false;
             this.btnEnviar.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // rTxtLog
-            // 
-            this.rTxtLog.Location = new System.Drawing.Point(13, 19);
-            this.rTxtLog.Name = "rTxtLog";
-            this.rTxtLog.ReadOnly = true;
-            this.rTxtLog.Size = new System.Drawing.Size(353, 252);
-            this.rTxtLog.TabIndex = 10;
-            this.rTxtLog.Text = "";
-            // 
             // frmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(397, 416);
+            this.ClientSize = new System.Drawing.Size(397, 419);
             this.Controls.Add(this.groupBoxBatePapo);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
