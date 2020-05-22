@@ -33,6 +33,7 @@ namespace ChatServidor
             {
                 rTxtLog.AppendText(strMensagem + "\r\n");
             }
+            rTxtLog.ScrollToCaret();
         }
 
         private void btnConectar_Click(object sender, EventArgs e)
@@ -67,6 +68,7 @@ namespace ChatServidor
                 rTxtLog.SelectionColor = Color.Blue;
                 rTxtLog.AppendText("Monitorando as conexões...\r\n");
                 rTxtLog.SelectionColor = Color.Black;
+                rTxtLog.ScrollToCaret();
             }
             catch (Exception ex)
             {
