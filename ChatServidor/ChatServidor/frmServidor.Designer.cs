@@ -28,27 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.txtLog = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.btnAtender = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnConectar = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(211, 69);
+            this.txtLog.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtLog.Location = new System.Drawing.Point(11, 22);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(390, 229);
+            this.txtLog.Size = new System.Drawing.Size(335, 269);
             this.txtLog.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 69);
+            this.label1.Location = new System.Drawing.Point(13, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 13);
             this.label1.TabIndex = 1;
@@ -56,49 +61,66 @@
             // 
             // txtIP
             // 
-            this.txtIP.Location = new System.Drawing.Point(14, 89);
+            this.txtIP.Location = new System.Drawing.Point(16, 44);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(179, 20);
+            this.txtIP.Size = new System.Drawing.Size(200, 20);
             this.txtIP.TabIndex = 2;
             // 
-            // btnAtender
+            // groupBox1
             // 
-            this.btnAtender.Location = new System.Drawing.Point(14, 121);
-            this.btnAtender.Name = "btnAtender";
-            this.btnAtender.Size = new System.Drawing.Size(179, 23);
-            this.btnAtender.TabIndex = 3;
-            this.btnAtender.Text = "Start Server";
-            this.btnAtender.UseVisualStyleBackColor = true;
-            this.btnAtender.Click += new System.EventHandler(this.btnAtender_Click);
+            this.groupBox1.Controls.Add(this.btnConectar);
+            this.groupBox1.Controls.Add(this.txtIP);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(359, 85);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Servidor";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // label2
+            // groupBox2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label2.Location = new System.Drawing.Point(9, 7);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(230, 24);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "TCP/IP CHAT APPLICATION";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.groupBox2.Controls.Add(this.txtLog);
+            this.groupBox2.Location = new System.Drawing.Point(12, 103);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(359, 300);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Log Servidor";
+            // 
+            // btnConectar
+            // 
+            this.btnConectar.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.btnConectar.BackColor = System.Drawing.SystemColors.Control;
+            this.btnConectar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnConectar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConectar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConectar.Location = new System.Drawing.Point(222, 42);
+            this.btnConectar.Name = "btnConectar";
+            this.btnConectar.Size = new System.Drawing.Size(119, 25);
+            this.btnConectar.TabIndex = 6;
+            this.btnConectar.Text = "&Iniciar";
+            this.btnConectar.UseVisualStyleBackColor = false;
+            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(614, 315);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnAtender);
-            this.Controls.Add(this.txtIP);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtLog);
+            this.ClientSize = new System.Drawing.Size(380, 412);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Chat Servidor";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -107,8 +129,9 @@
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIP;
-        private System.Windows.Forms.Button btnAtender;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnConectar;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

@@ -35,14 +35,14 @@ namespace ChatCliente
             if (statusConexao == false)
             {
                 // Inicializa a conexão
-                InicializaConexao();
+                inicializarConexao();
             }
             else // Se esta conectado entao desconecta
             {
-                FechaConexao("Desconectado a pedido do usuário.");
+                fecharConexao("Desconectado a pedido do usuário.");
             }
         }
-        private void InicializaConexao()
+        private void inicializarConexao()
         {
             try
             {
@@ -64,6 +64,7 @@ namespace ChatCliente
                 txtMensagem.Enabled = true;
                 btnEnviar.Enabled = true;
                 btnConectar.Text = "Desconectar";
+                
 
                 // Envia o nome do usuário ao servidor
                 stwEnviador = new StreamWriter(tcpServidor.GetStream());
@@ -71,7 +72,7 @@ namespace ChatCliente
                 stwEnviador.Flush();
 
                 //Inicia a thread para receber mensagens e nova comunicação
-                mensagemThread = new Thread(new ThreadStart(RecebeMensagens));
+                mensagemThread = new Thread(new ThreadStart(receberMensagem));
                 mensagemThread.Start();
             }
             catch (Exception ex)
@@ -80,7 +81,7 @@ namespace ChatCliente
             }
         }
 
-        private void RecebeMensagens()
+        private void receberMensagem()
         {
             // recebe a resposta do servidor
             strReceptor = new StreamReader(tcpServidor.GetStream());
@@ -89,7 +90,7 @@ namespace ChatCliente
             if (ConResposta[0] == '1')
             {
                 // Atualiza o formulário para informar que esta conectado
-                this.Invoke(new AtualizaLogCallBack(this.AtualizaLog), new object[] { "Conectado com sucesso!" });
+                this.Invoke(new AtualizaLogCallBack(this.atualizarChat), new object[] { "Conectado com sucesso!" });
             }
             else // Se o primeiro caractere não for 1 a conexão falhou
             {
@@ -97,7 +98,7 @@ namespace ChatCliente
                 // Extrai o motivo da mensagem resposta. O motivo começa no 3o caractere
                 Motivo += ConResposta.Substring(2, ConResposta.Length - 2);
                 // Atualiza o formulário como o motivo da falha na conexão
-                this.Invoke(new FechaConexaoCallBack(this.FechaConexao), new object[] { Motivo });
+                this.Invoke(new FechaConexaoCallBack(this.fecharConexao), new object[] { Motivo });
                 // Sai do método
                return;
             }
@@ -106,11 +107,11 @@ namespace ChatCliente
             while (statusConexao)
             {
                 // exibe mensagems no Textbox
-                this.Invoke(new AtualizaLogCallBack(this.AtualizaLog), new object[] { strReceptor.ReadLine() });
+                this.Invoke(new AtualizaLogCallBack(this.atualizarChat), new object[] { strReceptor.ReadLine() });
             }
         }
 
-        private void AtualizaLog(string strMensagem)
+        private void atualizarChat(string strMensagem)
         {
             // Anexa texto ao final de cada linha
             txtLog.AppendText(strMensagem + "\r\n");
@@ -118,7 +119,7 @@ namespace ChatCliente
 
         private void btnEnviar_Click(object sender, System.EventArgs e)
         {
-            EnviaMensagem();
+            enviarMensagem();
         }
 
         private void txtMensagem_KeyPress(object sender, KeyPressEventArgs e)
@@ -126,12 +127,12 @@ namespace ChatCliente
             // Se pressionou a tecla Enter
             if (e.KeyChar == (char)13)
             {
-                EnviaMensagem();
+                enviarMensagem();
             }
         }
 
         // Envia a mensagem para o servidor
-        private void EnviaMensagem()
+        private void enviarMensagem()
         {
             if (txtMensagem.Lines.Length >= 1)
             {
@@ -144,7 +145,7 @@ namespace ChatCliente
         }
 
         // Fecha a conexão com o servidor
-        private void FechaConexao(string Motivo)
+        private void fecharConexao(string Motivo)
         {
             // Mostra o motivo porque a conexão encerrou
             txtLog.AppendText(Motivo + "\r\n");
@@ -155,6 +156,7 @@ namespace ChatCliente
             txtMensagem.Enabled = false;
             btnEnviar.Enabled = false;
             btnConectar.Text = "Conectar";
+            
 
             // Fecha os objetos
             statusConexao = false;
@@ -178,7 +180,22 @@ namespace ChatCliente
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            EnviaMensagem();
+            enviarMensagem();
+        }
+
+        private void desconectarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // se não esta conectando aguarda a conexão
+            if (statusConexao == true)
+            {
+                // Se esta conectado entao desconecta
+                fecharConexao("Desconectado a pedido do usuário.");
+            }
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

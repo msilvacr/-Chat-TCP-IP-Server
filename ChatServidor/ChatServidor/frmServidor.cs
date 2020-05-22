@@ -15,7 +15,34 @@ namespace ChatServidor
 
         private void btnAtender_Click(object sender, System.EventArgs e)
         {
-            if (txtIP.Text==string.Empty)
+        }
+
+        public void mainServidor_StatusChanged(object sender, StatusChangedEventArgs e)
+        {
+            // Chama o método que atualiza o formulário
+            this.Invoke(new AtualizaStatusCallback(this.AtualizaStatus), new object[] { e.EventMessage });
+        }
+
+        private void AtualizaStatus(string strMensagem)
+        {
+            // Atualiza o logo com mensagens
+            txtLog.AppendText(strMensagem + "\r\n");
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConectar_Click(object sender, EventArgs e)
+        {
+
+            if (txtIP.Text == string.Empty)
             {
                 MessageBox.Show("Informe o endereço IP.");
                 txtIP.Focus();
@@ -44,23 +71,6 @@ namespace ChatServidor
             {
                 MessageBox.Show("Erro de conexão : " + ex.Message);
             }
-        }
-
-        public void mainServidor_StatusChanged(object sender, StatusChangedEventArgs e)
-        {
-            // Chama o método que atualiza o formulário
-            this.Invoke(new AtualizaStatusCallback(this.AtualizaStatus), new object[] { e.EventMessage });
-        }
-
-        private void AtualizaStatus(string strMensagem)
-        {
-            // Atualiza o logo com mensagens
-            txtLog.AppendText(strMensagem + "\r\n");
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
