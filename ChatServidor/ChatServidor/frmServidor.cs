@@ -49,7 +49,7 @@ namespace ChatServidor
                 return;
             }
             try
-            {
+            { 
                 IPAddress enderecoIP = IPAddress.Parse(txtIP.Text);
                 ChatServidor mainServidor = new ChatServidor(enderecoIP);
                 ChatServidor.StatusChanged += new StatusChangedEventHandler(mudancaStatus);
