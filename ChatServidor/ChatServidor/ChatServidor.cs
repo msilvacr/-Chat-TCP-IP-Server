@@ -30,6 +30,8 @@ namespace ChatServidor
 
     class ChatServidor
     {
+
+        //DEFINE NÚMERO MAX DE USUÁRIOS
         public static Hashtable htUsuarios = new Hashtable(100); 
         public static Hashtable htConexoes = new Hashtable(100); 
         private IPAddress enderecoIP;
