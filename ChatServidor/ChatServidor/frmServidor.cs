@@ -55,7 +55,7 @@ namespace ChatServidor
                 ChatServidor.StatusChanged += new StatusChangedEventHandler(mudancaStatus);
                 mainServidor.IniciaAtendimento();
                 rTxtLog.SelectionColor = Color.Blue;
-                rTxtLog.AppendText("Monitorando as conexões...\r\n");
+                rTxtLog.AppendText("Servidor conetado.\r\n");
                 rTxtLog.SelectionColor = Color.Black;
                 rTxtLog.ScrollToCaret();
             }

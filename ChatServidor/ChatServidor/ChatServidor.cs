@@ -30,8 +30,8 @@ namespace ChatServidor
 
     class ChatServidor
     {
-        public static Hashtable htUsuarios = new Hashtable(30); 
-        public static Hashtable htConexoes = new Hashtable(30); 
+        public static Hashtable htUsuarios = new Hashtable(100); 
+        public static Hashtable htConexoes = new Hashtable(100); 
         private IPAddress enderecoIP;
         private TcpClient tcpCliente;
         public static event StatusChangedEventHandler StatusChanged;
